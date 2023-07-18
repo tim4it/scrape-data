@@ -47,7 +47,7 @@ def read_html_template(path):
 
 
 def show_records(self):
-    """function to show records in template"""
+    """Load html template and replace template html table rows with data from database"""
     file = read_html_template(self.path)
     # fetch records from database
     table_data = get_scraped_records()
