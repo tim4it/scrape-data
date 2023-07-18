@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td {
+            border: 1px solid #d5d5d5;
+            text-align: center;
+            padding: 8px;
+        }
+
+        th {
+            border: 1px solid #d5d5d5;
+            padding: 8px;
+            background: black;
+            color: white;
+            text-align: center;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+    <title>Scraped data</title>
+</head>
+<body>
+<h2>Data from sreality.cz - apartments, search - first 500 items</h2>
+<table>
+    <tr>
+        <th>Title</th>
+        <th>Locality</th>
+        <th>Price</th>
+        <th>Image</th>
+    </tr>
+    {{user_records}}
+</table>
+</body>
+</html>
