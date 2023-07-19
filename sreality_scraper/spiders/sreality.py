@@ -9,7 +9,8 @@ logger = logging.getLogger(__name__)
 
 def connect_to_db():
     """
-    Get connection to database. If connection does not exist loop until it exists
+    Get connection to database. If connection does not exist loop until it exists.
+    Also remove all records in database table when database connection is valid
     :return: postgres connection
     """
     while True:
@@ -24,11 +25,10 @@ def connect_to_db():
             cursor = conn.cursor()
             cursor.execute("TRUNCATE TABLE sreality")
             conn.commit()
-            break
+            return conn
         except psycopg2.Error as ex:
             logger.info(f"Wait for database initialization. Sleep for half a second! {ex}")
             time.sleep(0.5)
-    return conn
 
 
 class SrealitySpider(scrapy.Spider):
@@ -37,7 +37,8 @@ class SrealitySpider(scrapy.Spider):
 
     def parse(self, response, **kwargs):
         """
-        Parse sreality.cz json data and store data to postgres database
+        Parse sreality.cz json data and store data to postgres database.
+        Since HTML is created dynamically, we must call API with method GET and get 500 results from API
         :param response: response data -
         :return: insert database count data
         """
@@ -48,7 +49,7 @@ class SrealitySpider(scrapy.Spider):
         data = response.json()
         estates = data["_embedded"]["estates"]
         # iterate over estates json list
-        for i, estate in enumerate(estates):
+        for estate in estates:
             img = estate["_links"]["image_middle2"][0]["href"]
             title = estate["name"]
             local_data = estate["locality"]
