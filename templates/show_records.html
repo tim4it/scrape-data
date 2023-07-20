@@ -29,15 +29,16 @@
     <title>Sreality data</title>
 </head>
 <body>
-<h2>Data from sreality.cz - apartments, search - first 500 items</h2>
+<h2>Data from sreality.cz - apartments, search - first {{ estate_size }} items</h2>
 <table>
     <tr>
+        <th>Item</th>
         <th>Title</th>
         <th>Locality</th>
         <th>Price</th>
         <th>Image</th>
     </tr>
-    {{user_records}}
+    {{ estate_records }}
 </table>
 </body>
 </html>

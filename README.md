@@ -56,3 +56,21 @@ Start web browser and type:
 ```
 http://localhost:8080/
 ```
+
+## Application dynamic records
+
+In the code we can change constant '**estate size**':
+```
+ESTATE_RECORDS_SIZE
+```
+Default is set to 500, but we can change to any number larger than 0. This will show number of item inserted and presented in html view. When code change is made, we must execute **docker-compose** again to get new version of data and view:
+```
+docker-compose down
+docker-compose up --build
+```
+or:
+```
+docker-compose down
+docker-compose build --no-cache
+docker-compose up
+```
