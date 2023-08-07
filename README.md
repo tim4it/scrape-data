@@ -1,5 +1,5 @@
-# Scrape data
-Scrape data from net and put some data to postgres
+# Scrape data from website example
+Use `scrapy` framework to scrape the first 500 items (title, image url) from `sreality.cz` (flats, sell) and save it in the `Postgresql` database. Implement a simple HTTP server in python and show these 500 items on a simple page (title and image) and put everything to single docker-compose command so that we can run `docker-compose up` and see the scraped ads on http://localhost:8080 page.
 
 ## Docker related stuff
 
